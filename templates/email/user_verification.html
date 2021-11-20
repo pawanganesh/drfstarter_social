@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Static Template</title>
+        <style>
+            button {
+                margin: 0 auto;
+                border: none;
+                padding: 12px 20px;
+                background: #aa000f;
+                color: #fafafa;
+                border-radius: 6px;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background: #8f000c;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body
+        style="
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        "
+    >
+        <div
+            style="
+                border: 1px solid #d6d6d6;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 600px;
+                margin: 0 auto;
+            "
+        >
+            <h2>Hello {{ full_name }}!</h2>
+            <p>Thanks for registering.</p>
+            <p>
+                This email is to verify email of the user in drfstarter project.
+                Please click on the button below to verify your email.
+            </p>
+            <div style="text-align: center; margin: 30px 0">
+                <a href="{{absurl}}"><button>Verify Email Address</button></a>
+            </div>
+            <p>Note: You cannot login without verifying the email.</p>
+            <div style="margin-top: 20px">
+                <p>Regards,</p>
+                <b>DRF STARTER PROJECT</b>
+            </div>
+            <hr />
+            <div style="font-size: 14px; margin: 10px 0">
+                If you'r having trouble clicking the "Verify Email address"
+                button, copy and pate the URL below into your web browser:
+                <a href="{{absurl}}"> {{absurl}} </a>
+            </div>
+        </div>
+    </body>
+</html>

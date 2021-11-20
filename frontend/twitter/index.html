@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Login</title>
+</head>
+<body>
+<h1>Twitter Login</h1>
+<button onclick="Login()">Login</button>
+
+<script>
+
+    const url_string = window.location.href
+    const url = new URL(url_string);
+    const oauth_token = url.searchParams.get("oauth_token");
+    const oauth_verifier = url.searchParams.get("oauth_verifier");
+    console.log(oauth_token);
+    console.log(oauth_verifier);
+
+    if (oauth_token !== null && oauth_verifier !== null) {
+        const payload = {
+            oauth_token: oauth_token,
+            oauth_verifier: oauth_verifier
+        }
+        const url = "http://localhost:8000/social/twitter/";
+        const response = fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        console.log(response);
+    }
+
+    const Login = async () => {
+        const response = await fetch('http://127.0.0.1:8000/social/twitter/oauth/request_token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const oauth_token = data['oauth_token'];
+        console.log(data);
+        console.log(oauth_token);
+        window.location.href = `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`;
+    }
+</script>
+</body>
+</html>
